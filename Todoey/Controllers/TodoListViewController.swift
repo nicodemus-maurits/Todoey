@@ -77,7 +77,7 @@ class TodoListViewController: UITableViewController {
     }
     
     //MARK - Model Manipulation Methods
-    func saveItems() {
+    func Items() {
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(itemArray)
@@ -86,6 +86,17 @@ class TodoListViewController: UITableViewController {
             print("error encoding item array, \(error)")
         }
         tableView.reloadData()
+    }
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to:dataFilePath!)
+        } catch {
+            print("Error encoding item array \(error)")
+        }
+        self.tableView.reloadData()
     }
     
     func loadItems() {
